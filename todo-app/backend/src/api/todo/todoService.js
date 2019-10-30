@@ -4,4 +4,4 @@ Todo.methods(['get', 'post', 'put', 'delete'])
 
 Todo.updateOptions({ new: true, runValidators: true })
 
-module.export = Todo
+module.exports = Todo

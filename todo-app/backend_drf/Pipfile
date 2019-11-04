@@ -9,7 +9,6 @@ verify_ssl = true
 django-rest-framework-mongoengine = "*"
 djangorestframework = "*"
 mongoengine = "*"
-django-cors-header = "*"
 django-cors-headers = "*"
 
 [requires]

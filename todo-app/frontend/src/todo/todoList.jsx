@@ -9,15 +9,15 @@ export default props => {
         
         return bagulhoList.map(todo => (
             <tr key={todo._id}>
-                <td>{todo.description}</td>
+                <td className={todo.done ? 'markedAsDone' : ''}>
+                    {todo.description}
+                </td>
                 <td>
-                    <ButtonIcon style="success" icon="check" hide={props.done}
+                    <ButtonIcon style="success" icon="check" hide={todo.done}
                         onClick={() => props.handleMarkAsDone(todo)}>
-
                     </ButtonIcon>                                        
-                    <ButtonIcon style="warning" icon="undo" hide={!props.done}
+                    <ButtonIcon style="warning" icon="undo" hide={!todo.done}
                         onClick={() => props.handleMarkAsPending(todo)}>
-
                     </ButtonIcon>
                     <ButtonIcon style="danger" icon="trash-o"
                         onClick={() => props.handleRemove(todo)}>

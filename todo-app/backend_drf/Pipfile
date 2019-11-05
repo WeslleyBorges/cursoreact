@@ -10,6 +10,7 @@ django-rest-framework-mongoengine = "*"
 djangorestframework = "*"
 mongoengine = "*"
 django-cors-headers = "*"
+djongo = "*"
 
 [requires]
 python_version = "3.6"

@@ -1,4 +1,4 @@
-import { combineReducers } from 'react'
+import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
     todo: () => ({

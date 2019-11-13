@@ -46,6 +46,6 @@ const TodoList = props => {
 }
 
 const mapStateToProps = state => ({ list: state.todo.list })
-// const mapDispatchToProps = dispatch => ({  })
+const mapDispatchToProps = dispatch => ({  })
 
 export default connect(mapStateToProps)(TodoList)

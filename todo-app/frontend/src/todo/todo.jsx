@@ -5,8 +5,6 @@ import PageHeader from '../template/pageHeader'
 import TodoForm from '../todo/todoForm'
 import TodoList from '../todo/todoList'
 
-const URL = 'http://localhost:3003/api/todos'
-
 export default class Todo extends Component {
     constructor(props) {
         super(props)
@@ -22,7 +20,7 @@ export default class Todo extends Component {
         this.handleMarkAsPending = this.handleMarkAsPending.bind(this)
         this.handleSearch = this.handleSearch.bind(this)
 
-        this.refresh()
+        // this.refresh()
     }
 
     refresh(description='') {

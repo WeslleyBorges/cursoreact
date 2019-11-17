@@ -1,6 +1,19 @@
-export default changeDescription = (event) => {
+import axios from 'axios'
+
+const URL = 'http://localhost:3003/api/todos'
+
+export const changeDescription = event => {
   return {
     type: 'DESCRIPTION_CHANGED',
     payload: event.target.value
+  }
+}
+
+export const searchTodo = () => {
+  const request = axios.get(`${URL}?sort=-createdAt`)
+
+  return {
+    type: 'TODO_SEARCH',
+    payload: request
   }
 }

@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from "redux";
 
 import ButtonIcon from '../template/ButtonIcon'
+import { deleteTodo, togglePendency, searchTodo } from './todoActions'
 
 const TodoList = props => {
 
@@ -15,13 +17,13 @@ const TodoList = props => {
                 </td>
                 <td>
                     <ButtonIcon style="success" icon="check" hide={todo.done}
-                        onClick={() => props.handleMarkAsDone(todo)}>
+                        onClick={() => props.togglePendency(todo)}>
                     </ButtonIcon>                                        
                     <ButtonIcon style="warning" icon="undo" hide={!todo.done}
-                        onClick={() => props.handleMarkAsPending(todo)}>
+                        onClick={() => props.togglePendency(todo)}>
                     </ButtonIcon>
                     <ButtonIcon style="danger" icon="trash-o"
-                        onClick={() => props.handleRemove(todo)}>
+                        onClick={() => props.deleteTodo(todo._id)}>
                     </ButtonIcon>
                 </td>
             </tr>
@@ -46,6 +48,6 @@ const TodoList = props => {
 }
 
 const mapStateToProps = state => ({ list: state.todo.list })
-const mapDispatchToProps = dispatch => ({  })
+const mapDispatchToProps = dispatch => bindActionCreators({ deleteTodo, togglePendency, searchTodo }, dispatch)
 
-export default connect(mapStateToProps)(TodoList)
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

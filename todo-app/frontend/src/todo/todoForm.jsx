@@ -14,10 +14,11 @@ class TodoForm extends Component {
     }
 
     keyHandler (e) {
+        const { addTodo, searchTodo, cleanDescription } = this.props
         if (e.key === 'Enter')
-            e.shiftKey ? this.props.handleSearch() : props.handleAdd()
+            e.shiftKey ? searchTodo(description) : addTodo()
         else if (e.key === 'Escape')
-                props.handleClear()
+                cleanDescription()
     }
 
     componentWillMount() {

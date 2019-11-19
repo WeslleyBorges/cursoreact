@@ -9,42 +9,36 @@ export const changeDescription = event => {
   }
 }
 
-export const searchTodo = (description='') => {
-  const search = description ? `&description__regex=/${description}/` : description
-  const request = axios.get(`${URL}?sort=-createdAt${search}`)
-
-  return {
-    type: 'TODO_SEARCHED',
-    payload: request
+export const searchTodo = () => {
+  return (dispatch, getState) => {
+    const description = getState().todo.description
+    const search = description ? `&description__regex=/${description}/` : description
+    axios.get(`${URL}?sort=-createdAt${search}`)
+      .then(res => dispatch({ type: 'TODO_SEARCHED', payload: res.data }))
   }
 }
 
 export const addTodo = description => {
   return dispatch => {
     axios.post(URL, { description })
-      .then(res => dispatch({ type: 'ADD_TODO', payload: res.data }))
+      .then(res => dispatch(cleanDescription()))
       .then(res => dispatch(searchTodo()))
   }
 }
 
-export const cleanDescription = () => {
-  return {
-    type: 'CLEAN_DESCRIPTION',
-    payload: ''
-  }
-}
+export const cleanDescription = () => ([{ type: 'CLEAN_DESCRIPTION' }, searchTodo()])
 
 export const deleteTodo = todoId => {
   return dispatch => {
     axios.delete(`${URL}/${todoId}`)
-      .then(res => dispatch(search()))
+      .then(res => dispatch(searchTodo()))
   }
 }
 
-export const togglePendency = todo => {
+export const togglePendency = (todo) => {
   const todoDone = todo.done ? false : true
   return dispatch => {
     axios.put(`${URL}/${todo._id}`, { ...todo, done: todoDone })
-      .then(res => dispatch(search()))
+      .then(res => dispatch(searchTodo()))
   }
 }

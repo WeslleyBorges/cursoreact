@@ -3,14 +3,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from "redux";
 
 import ButtonIcon from '../template/ButtonIcon'
-import { deleteTodo, togglePendency, searchTodo } from './todoActions'
+import { deleteTodo, togglePendency } from './todoActions'
 
 const TodoList = props => {
-
+    
     const renderRows = () => {
         const bagulhoList = props.list || []
-        
-        return bagulhoList.map(todo => (
+        return bagulhoList.map(todo => (            
             <tr key={todo._id}>
                 <td className={todo.done ? 'markedAsDone' : ''}>
                     {todo.description}
@@ -22,7 +21,7 @@ const TodoList = props => {
                     <ButtonIcon style="warning" icon="undo" hide={!todo.done}
                         onClick={() => props.togglePendency(todo)}>
                     </ButtonIcon>
-                    <ButtonIcon style="danger" icon="trash-o"
+                    <ButtonIcon style="danger" icon="trash-o" hide={!todo.done}
                         onClick={() => props.deleteTodo(todo._id)}>
                     </ButtonIcon>
                 </td>
@@ -48,6 +47,6 @@ const TodoList = props => {
 }
 
 const mapStateToProps = state => ({ list: state.todo.list })
-const mapDispatchToProps = dispatch => bindActionCreators({ deleteTodo, togglePendency, searchTodo }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ deleteTodo, togglePendency }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

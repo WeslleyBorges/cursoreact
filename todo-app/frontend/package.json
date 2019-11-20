@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --progress --colors --inline --hot",
-    "production": "webpack --progress -p"
+    "production": "webpack --progress -p",
+    "start": ""
   },
   "devDependencies": {
     "axios": "0.15.3",
